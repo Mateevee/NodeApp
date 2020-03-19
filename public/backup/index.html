@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Page Title</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+
+<body>
+  <button onclick="myFunction()">Click me</button>
+  <h1 id="abc">test1a</h1>
+  <script>
+    
+    
+    var socket = io();
+    function myFunction() {
+      socket.emit('entra-jogo', '-');
+    }
+
+    socket.on('msg1', function(msg){
+      document.getElementById('abc').innerHTML=msg
+      //window.location.href =window.location.href + "5";
+    });
+
+  </script>
+  <div></div>
+
+  
+</body>
+
+</html>

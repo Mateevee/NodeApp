@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Page Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="hero">Heroi x</h2>
+    <div style="display: inline-block;">
+      <div id ='list' class="list-group" >
+        <button id = "bt-1" type="button" onclick="remove_item(1)" class="list-group-item list-group-item-action">A propriedade CSS  display especifica o tipo de caixa de renderização usada por um elemento. No HTML, os valores padrões da propriedade  display são feitas a partir do comportamento descrito nas especificações HTML ou da folha de estilo padrão do navegador/usuário. O valor padrão em XML é inline.</button>
+        <button id = "bt-2" type="button" onclick="remove_item(2)"class="list-group-item list-group-item-action">2</button>
+        <button id = "bt-3" type="button" onclick="remove_item(3)"class="list-group-item list-group-item-action">3</button>
+        <button id = "bt-4" type="button" onclick="remove_item(4)"class="list-group-item list-group-item-action">4</button>
+        <button id = "bt-5" type="button" onclick="remove_item(5)"class="list-group-item list-group-item-action">5</button>
+      </div> 
+      <div class="stats-container">
+        <div class="container-monster">
+          <h3 class="monster-info">nivel</h3>
+        </div>
+        <div id="abc">
+          <h5 style="text-align: center;">Tempo para escolha:</h5>
+          <h4 id="timer" style="text-align: center;">30</h4>
+        </div>
+        <div class="player-stats">
+          <h3>stats</h3>
+        </div>
+      </div> 
+      <div id="battle">
+          <h3>Batalha</h3>
+          <span id="win" style="visibility: hidden;" class="badge badge-pill badge-success">Venceu</span>
+          <span id="lost" style="visibility: hidden;" class="badge badge-pill badge-danger">Perdeu</span>
+      </div> 
+    </div>
+    <div class="button-container">
+        <button class="pegar" onclick="myLoop()">Pegar</button>
+        <button class="passar-vez" onclick="myLoop()">Passar</button>
+        <button class="enfrentar" onclick="escolhe_pegar()">Enfrentar</button>
+    </div>
+  </div>
+  <script>
+    var socket = io();
+    var x = 10;
+    var i=1;
+
+    function escolhe_pegar()
+    {
+      var elem =  document.getElementById("win");
+      elem.style.visibility = "visible";
+    }
+
+    function remove_item(x)
+    {
+      var elem =  document.getElementById("bt-"+x)
+      elem.innerHTML="abc";
+      elem.style.backgroundColor =  '#FFB6C1';
+      elem.disabled = 'true';
+    }
+
+    function myLoop () {           
+      setTimeout(function () 
+      {  
+          document.getElementById('timer').innerHTML=i;   
+          i++;                 
+          if (i < 10) 
+          {           
+            myLoop();           
+          }                 
+      }, 1000)
+    }
+     
+
+  </script>
+  <div></div>
+
+  
+</body>
+
+</html>
