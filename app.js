@@ -3,10 +3,10 @@ const http = require('http');
 const socketio = require('socket.io');
 const path = require('path');
 
-
 const app = express()
 const server = http.createServer(app)
 const sockets = socketio(server)
+
 
 app.use(express.static('public'))
 
@@ -27,7 +27,8 @@ app.get('/',function(req,res) {
 
 sockets.on('connection', (socket) => {
     const playerId = socket.id
-    console.log(`> Player connected: ${playerId}`)
+    var c = socket.handshake.address;
+    console.log(`> Player connected: ${playerId} with cookie ${c}`)
     jogadores.push()
 
     socket.on('entra-jogo', function(msg){
